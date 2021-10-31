@@ -1,15 +1,22 @@
-//UC4-->using template literals ES6 features
-window.addEventListener('DOMContentLoaded',(event)=>
-{
+//uc6
+let employeePayrollList;
+window.addEventListener('DOMContentLoaded', (event) => {
+    employeePayrollList=getEmployeePayrollFromLocalStorage();
+    document.querySelector(".emp-count").textContent=employeePayrollList.length;
     createInnerHtml();
 });
+//UC6--getting the data from local storage
+const getEmployeePayrollFromLocalStorage=()=>
+{
+    return localStorage.getItem("EmployeePayrollList2") ? JSON.parse(localStorage.getItem("EmployeePayrollList2")) : [];
+}
 
 //UC5-->employee details from json object
 createInnerHtml = () => {
     let headerHtml = "<th></th><th>Name</th><th>Gender</th><th>Department</th><th>Salary</th><th>Start Date</th><th>Actions</th>"
-    let empPayrollObject = createEmployeePayrollJSON(); //[0]it only display zeroth index object & removing [0] it display list, but use for to display all 
+    if (employeePayrollList.length==0) return;
     let innerHtml = `${headerHtml}`;
-    for (let employeeData of empPayrollObject) 
+    for (let employeeData of employeePayrollList) 
     {
         innerHtml = `${innerHtml}
         <tr>
@@ -24,8 +31,8 @@ createInnerHtml = () => {
         <td>${employeeData._salary}</td>
         <td>${employeeData._startDate}</td>
         <td>
-        <img id="${employeeData._name}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon">
-        <img id="${employeeData._name}" onclick="remove(this)" src="../assets/Logo/create-black-18dp.svg" alt="create icon">
+        <img name="${employeeData._name}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon"> 
+        <img name="${employeeData._name}" onclick="update(this)" src="../assets/Logo/create-black-18dp.svg" alt="create icon">
         </td>
         </tr>
         `;
@@ -33,6 +40,7 @@ createInnerHtml = () => {
     document.querySelector('#display').innerHTML = innerHtml;
 }
 
+//uc5
 const createEmployeePayrollJSON = () => {
     let empPayrollList = [
         {
@@ -59,6 +67,7 @@ const createEmployeePayrollJSON = () => {
     return empPayrollList;
 }
 
+//Function is to display all dept, and does not forced for two dept and also does nt give undefined message
 const getDeptHtml=(deptList) =>
 {
     let deptHtml='';
