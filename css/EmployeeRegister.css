@@ -155,3 +155,40 @@ select{
     border: 1px solid #707070;
     cursor: pointer;
 }
+
+/*Uc6 using media queries */
+@media screen and (max-width: 668px) {
+    .cancelButton
+    {
+        margin-left: 0px;
+    }
+    .form
+    {
+        width: 85%;
+        padding:44px 20px;
+        background-color: pink;
+        margin-top:10px;
+    }
+    .row-content
+    {
+        flex-direction: column;
+    }
+    .profile-radio-content
+    {
+        flex-flow:wrap;
+    }
+    .submit-reset
+    {
+        width:100%;
+        display: flex;
+        flex-grow:1;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .buttonParent
+    {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+  }
