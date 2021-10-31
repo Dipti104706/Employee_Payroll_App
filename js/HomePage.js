@@ -77,3 +77,17 @@ const getDeptHtml=(deptList) =>
     }
     return deptHtml;
 }
+
+//Uc1 remove data 
+//delete operation in home page based on name
+const remove=(node)=>
+{
+    let employeePayrollData=employeePayrollList.find(empData=>empData._name==node.name)
+    if(!employeePayrollData) return;
+    const index=employeePayrollList.map(empData=>empData._name)
+                               .indexOf(employeePayrollData._name);
+    employeePayrollList.splice(index,1);
+    localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));
+    document.querySelector(".emp-count").textContent=employeePayrollList.length;
+    createInnerHtml();
+}
