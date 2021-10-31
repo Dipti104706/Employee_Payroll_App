@@ -50,6 +50,37 @@
                     </label>
                 </div>
             </div>
+            <!--UC4-adding gender,department & salary to the form-->
+            <div class="row-content">
+                <label class="label text" for="gender">Gender</label>
+                    <div class="gender-radio-content">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label class="text" for="male">Male</label>
+                        <input type="radio" id="Female" name="gender" value="Female">
+                        <label class="text" for="Female">Female</label>
+                    </div>
+            </div>
+            <div class="row-content">
+                <label class="label text ">Department</label>
+                    <div>
+                        <input type="checkbox" id="HR" value="HR" name="department">
+                        <label for="HR" class="department" >HR</label>
+                        <input type="checkbox" id="Sales"name="department" value="Sales">
+                        <label for="Sales" class="department" >Sales</label>
+                        <input type="checkbox" id="Finance" name="department" value="Finance">
+                        <label for="Finance" class="department" >Finance</label>
+                        <input type="checkbox" id="Engineer" name="department" value="Engineer">
+                        <label for="Engineer" class="department" >Engineer</label>
+                        <input type="checkbox" id="Others" name="department" value="Others">
+                        <label for="Others" class="department" >Others</label>
+                    </div>
+            </div>  
+            <div class="row-content">
+                <label class="label" for="salary">Salary</label>
+                <input type="range" class="input" id="salary" min="300000" max="500000" step="100" name="salary"
+                value="400000">
+                <output class="salary-output" id="salary-output" for="salary" value="400000">400000</output>
+            </div>
         </form>
     </div>
 </body>
