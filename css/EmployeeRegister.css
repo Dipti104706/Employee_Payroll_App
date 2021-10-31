@@ -155,3 +155,26 @@ select{
     border: 1px solid #707070;
     cursor: pointer;
 }
+
+/* UC7-Adding a styles for button--using active selector when clicking the button*/  
+.button:active{
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px)
+}
+.submitButton{
+    background-color: #f5f5f5;
+    margin-right: 30px;
+
+}
+.cancelButton{
+    text-decoration: none;
+    text-align: center;
+}
+error-output
+{
+    color:red;
+    font-size:12px;
+    font-style: italic;
+    margin-left: 10px;
+}
