@@ -1,12 +1,18 @@
 class EmployeePayrollData
 {   
+    //Uc10- add setter validation methods for name and start date
     get name()
     {
         return this._name;
     }
     set name(name)
     {
-        return this._name=name;
+        let nameRegex=RegExp("^[A-Z]{1}[a-z]{2,}$");
+        if(nameRegex.test(name))
+        {
+            this._name=name;
+        }
+       else throw "Invalid name";
     }
 
     get profilePic()
@@ -60,7 +66,17 @@ class EmployeePayrollData
     }
     set startDate(startDate)
     {
-        return this._startDate=startDate;
+        let now=new Date();
+        if(startDate>now) 
+        {
+            throw "Start date is a future date";
+        }
+        var diff=Math.abs( now.getTime() - startDate.getTime());
+        if(diff/(1000*60*60*24)>30) 
+        {
+            throw "Start date is beyond 30 days";
+        }
+        this._startDate=startDate;
     }
     
     toString()
