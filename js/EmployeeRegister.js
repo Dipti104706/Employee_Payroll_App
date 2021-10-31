@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded',(event)=>
     salary.addEventListener("input", function () {
     output.textContent = salary.value;
     });
+
 });
 
 /*Uc3 - create employee payroll object on doing save operation */
@@ -117,4 +118,40 @@ function createAndUpdateStorage(employeePayrollData)
     }
     alert(employeePayrollList.toString());
     localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));/* json.stringify used to convert object to json */
+}
+
+/*Uc-5 reset operation */
+const resetForm=() =>
+{
+  setValue('#name','');
+  unsetSelectedValues('[name=profile]');
+  unsetSelectedValues('[name=gender]');
+  unsetSelectedValues('[name=department]');
+  setValue('#salary','');
+  setValueByClassName('.salary-output','400000');
+  setValue('#notes','');
+  setValue('#day','1');
+  setValue('#month','January');
+  setValue('#year','2021');
+  setValueByClassName('.text-error','');
+}
+
+const setValue=(id,value)=>
+{
+  const element = document.querySelector(id);
+  element.value=value;
+}
+
+const setValueByClassName=(id,value)=>
+{
+  const element = document.querySelector(id);
+  element.textContent=value;
+}
+
+const unsetSelectedValues=(property)=>
+{
+  let allItems = document.querySelectorAll(property);
+  allItems.forEach(item=>{
+      item.checked=false;
+  });
 }
