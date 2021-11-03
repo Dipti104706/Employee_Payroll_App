@@ -1,5 +1,8 @@
 //Uc-2 for pay roll () Set eventlistener when document is loaded 
 //window-class,DOM-document object model is indicated for html document,it check for document loaded or not before giving access to user give input */
+let isUpdate=false;
+let empPayrollObj;
+
 window.addEventListener('DOMContentLoaded',(event)=>
 {
     const name=document.querySelector("#name");
@@ -29,8 +32,52 @@ window.addEventListener('DOMContentLoaded',(event)=>
     salary.addEventListener("input", function () {
     output.textContent = salary.value;
     });
-
+    checkForUpdate();
 });
+
+//Uc3- update the employee data
+//checking the update
+const checkForUpdate=() =>
+{
+  var empPayrollJson=localStorage.getItem('editEmp');
+  isUpdate=empPayrollJson?true: false;
+  if(!isUpdate) return;
+  empPayrollObj=JSON.parse(empPayrollJson);
+  setForm();
+}
+
+//populate 
+const setForm= () =>
+{
+  setValue('#name',empPayrollObj._name);
+  setSelectedValues('[name=profile]',empPayrollObj._profilePic);
+  setSelectedValues('[name=gender]',empPayrollObj._gender);
+  setSelectedValues('[name=department]',empPayrollObj._department);
+  setValue('#salary',empPayrollObj._salary);
+  setTextValue('.salary-output',empPayrollObj._salary);
+  setValue('#notes',empPayrollObj._notes);
+  let date= stringifyDate(empPayrollObj._startDate).split(" ");
+  setValue('#day',date[0]);
+  setValue('#month',date[1]);
+  setValue('#year',date[2]);
+}
+
+const setSelectedValues=(property,value)=>{
+  let allItems = document.querySelectorAll(property);
+  allItems.forEach(item=>{
+    if(Array.isArray(value))
+    {
+      if(value.includes(item.value))
+      {
+        item.checked=true;
+      }
+    }
+    else if (item.value === value)
+    {
+        item.checked=true;
+    }
+  });
+}
 
 /*Uc3 - create employee payroll object on doing save operation */
 const save=()=>

@@ -91,3 +91,14 @@ const remove=(node)=>
     document.querySelector(".emp-count").textContent=employeePayrollList.length;
     createInnerHtml();
 }
+
+//uc2 
+//update operation and store it in local
+const update=(node)=>
+{
+    let employeePayrollData=employeePayrollList.find(empData=>empData._name==node.name)
+    if(!employeePayrollData) return;
+    localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
+    //editEmp is the new local storage created
+    window.location.replace(site_Properties.add_emp_payroll_page); //this is for redirecting to the regoster page as add_emp variable holds that address
+}
