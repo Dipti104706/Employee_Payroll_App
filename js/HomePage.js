@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     employeePayrollList=getEmployeePayrollFromLocalStorage();
     document.querySelector(".emp-count").textContent=employeePayrollList.length;
     createInnerHtml();
+    localStorage.removeItem('editEmp');
 });
 //UC6--getting the data from local storage
 const getEmployeePayrollFromLocalStorage=()=>
@@ -31,8 +32,8 @@ createInnerHtml = () => {
         <td>${employeeData._salary}</td>
         <td>${employeeData._startDate}</td>
         <td>
-        <img name="${employeeData._name}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon"> 
-        <img name="${employeeData._name}" onclick="update(this)" src="../assets/Logo/create-black-18dp.svg" alt="create icon">
+        <img id="${employeeData._id}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon"> 
+        <img id="${employeeData._id}" onclick="update(this)" src="../assets/Logo/create-black-18dp.svg" alt="edit icon">
         </td>
         </tr>
         `;
@@ -82,10 +83,10 @@ const getDeptHtml=(deptList) =>
 //delete operation in home page based on name
 const remove=(node)=>
 {
-    let employeePayrollData=employeePayrollList.find(empData=>empData._name==node.name)
+    let employeePayrollData=employeePayrollList.find(empData=>empData._id==node.id)
     if(!employeePayrollData) return;
-    const index=employeePayrollList.map(empData=>empData._name)
-                               .indexOf(employeePayrollData._name);
+    const index=employeePayrollList.map(empData=>empData._id)
+                               .indexOf(employeePayrollData._id);
     employeePayrollList.splice(index,1);
     localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));
     document.querySelector(".emp-count").textContent=employeePayrollList.length;
@@ -96,7 +97,7 @@ const remove=(node)=>
 //update operation and store it in local
 const update=(node)=>
 {
-    let employeePayrollData=employeePayrollList.find(empData=>empData._name==node.name)
+    let employeePayrollData=employeePayrollList.find(empData=>empData._id==node.id)
     if(!employeePayrollData) return;
     localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
     //editEmp is the new local storage created

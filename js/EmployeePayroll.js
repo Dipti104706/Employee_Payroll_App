@@ -1,18 +1,26 @@
 class EmployeePayrollData
 {   
     //Uc10- add setter validation methods for name and start date
+    get id()
+    {
+        return this._id;
+    }
+    set id(id)
+    {
+        this._id=id;
+    }
     get name()
     {
         return this._name;
     }
     set name(name)
     {
-        let nameRegex=RegExp("^[A-Z]{1}[a-z]{2,}$");
+        let nameRegex=RegExp("^[A-Z]{1}[a-z]{2,}[ ][A-Z]{1}[a-z]{2,}$");
         if(nameRegex.test(name))
         {
             this._name=name;
         }
-       else throw "Invalid name";
+        else throw "Invalid name";
     }
 
     get profilePic()
@@ -83,7 +91,7 @@ class EmployeePayrollData
     {
         const option = {year:'numeric', month:'long', day:'numeric'};
         const empDate=!this.startDate?"undefined":this.startDate.toLocaleDateString("en-US",option);
-        return "Employee name = "+this.name+", Gender: "+this.gender+", Profile Pic: "+this.profilePic+", Salary: "+this.salary+
+        return "Employee ID = "+this.id+", Employee name = "+this.name+", Gender: "+this.gender+", Profile Pic: "+this.profilePic+", Salary: "+this.salary+
         ", Start Date: "+empDate + ", Department: "+this.department+  ", Notes: "+this.notes; 
     }
 }
