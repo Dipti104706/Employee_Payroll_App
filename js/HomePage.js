@@ -109,8 +109,7 @@ const getDeptHtml=(deptList) =>
     return deptHtml;
 }
 
-//Uc1 remove data 
-//delete operation in home page based on name
+//delete operation in home page
 const remove=(node)=>
 {
     let employeePayrollData=employeePayrollList.find(empData=>empData.id==node.id)
@@ -118,9 +117,25 @@ const remove=(node)=>
     const index=employeePayrollList.map(empData=>empData.id)
                                .indexOf(employeePayrollData.id);
     employeePayrollList.splice(index,1);
-    localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));
-    document.querySelector(".emp-count").textContent=employeePayrollList.length;
-    createInnerHtml();
+    if(site_Properties.use_local_storage.match("true"))
+    {
+        localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));
+        document.querySelector(".emp-count").textContent=employeePayrollList.length;
+        createInnerHtml();
+    }
+    else
+    {
+        const deleteURL=site_Properties.server_url + employeePayrollData.id.toString();
+        makeServiceCall("DELETE",deleteURL,false)
+        .then(responseText=>
+        {
+            createInnerHtml();
+        })
+        .catch(error=>
+        {
+            console.log("DELETE Error Status:"+JSON.stringify(error));
+        });
+    }
 }
 
 //uc2 

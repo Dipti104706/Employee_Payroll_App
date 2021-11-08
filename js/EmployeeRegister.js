@@ -254,22 +254,6 @@ const setTextValue = (id, value) => {
     element.textContent = value;
 }
 
-// /*Uc 4 storing in local storage*/
-// function createAndUpdateStorage(employeePayrollData)
-// {
-//     let employeePayrollList=JSON.parse(localStorage.getItem("EmployeePayrollList2"));/*Json parse used to convert json to object format */
-//     if(employeePayrollList!=undefined)
-//     {
-//         employeePayrollList.push(employeePayrollData);
-//     }
-//     else
-//     {
-//         employeePayrollList=[employeePayrollData];
-//     }
-//     alert(employeePayrollList.toString());
-//     localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));/* json.stringify used to convert object to json */
-// }
-
 /*Uc-5 reset operation */
 const resetForm = () => {
     setValue('#name', '');

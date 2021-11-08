@@ -26,18 +26,6 @@
       "_profilePic": "../assets/Profiles/Ellipse -2.png"
     },
     {
-      "_name": "Amarpa Shashanka Keerthi Kumar",
-      "_gender": "female",
-      "_department": [
-        "Sales"
-      ],
-      "_salary": "400000",
-      "_startDate": "29 Oct 2019",
-      "_note": "",
-      "_profilePic": "../assets/Profiles/Ellipse -1.png",
-      "id": 3
-    },
-    {
       "_name": "Sarika Boxi",
       "_profilePic": "../assets/Profiles/Ellipse -1.png",
       "_gender": "Female",
