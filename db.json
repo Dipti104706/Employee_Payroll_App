@@ -48,6 +48,30 @@
       "_notes": "Fine",
       "_startDate": "17 Oct 2021",
       "id": 4
+    },
+    {
+      "_name": "Vijay Konda",
+      "_profilePic": "../assets/Profiles/Ellipse -2.png",
+      "_gender": "male",
+      "_department": [
+        "HR"
+      ],
+      "_salary": "413700",
+      "_notes": "F9",
+      "_startDate": "21 Oct 2021",
+      "id": 5
+    },
+    {
+      "_name": "Debasmita Sutar",
+      "_profilePic": "../assets/Profiles/Ellipse -1.png",
+      "_gender": "Female",
+      "_department": [
+        "Sales"
+      ],
+      "_salary": "315700",
+      "_notes": "Fine",
+      "_startDate": "3 Nov 2021",
+      "id": 6
     }
   ]
 }

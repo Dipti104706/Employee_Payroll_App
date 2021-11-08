@@ -100,7 +100,6 @@ const save=(event)=>
     else
     {
         createOrUpdateEmployeePayroll();
-        window.location.replace(site_Properties.home_page);
     }
   }
   catch(e)
@@ -116,13 +115,13 @@ const createOrUpdateEmployeePayroll=()=>
   if(isUpdate)
   {
     methodCall="PUT";
-    postURL=postURL+empPayrollObj.id.toString();
+    postURL=postURL + empPayrollObj.id.toString();
   }
   makeServiceCall(methodCall,postURL,true,empPayrollObj)
  .then(responseText=>
   {
-      resetForm();
-    
+      resetForm();  
+      window.location.replace(site_Properties.home_page);
   })
   .catch(error=>
     {
