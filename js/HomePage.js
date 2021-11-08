@@ -1,15 +1,45 @@
 //uc6
 let employeePayrollList;
 window.addEventListener('DOMContentLoaded', (event) => {
-    employeePayrollList=getEmployeePayrollFromLocalStorage();
+    if(site_Properties.use_local_storage.match("true"))
+    {
+        getEmployeePayrollFromLocalStorage();
+    }
+    else
+    {
+        getEmployeePayrollDataFromServer();
+    }
+});
+
+const processEmployeePayrollDataResponse=()=>
+{
     document.querySelector(".emp-count").textContent=employeePayrollList.length;
     createInnerHtml();
     localStorage.removeItem('editEmp');
-});
+}
+
+//Retrieving data from json server
+const getEmployeePayrollDataFromServer=()=>
+{
+    makeServiceCall("GET",site_Properties.server_url,true)
+    .then(responseText=>
+    {
+        employeePayrollList=JSON.parse(responseText);
+        processEmployeePayrollDataResponse();
+    })
+    .catch(error=>
+    {
+        console.log("GET Error status: "+JSON.stringify(error));
+        employeePayrollList=[];
+        processEmployeePayrollDataResponse();
+    });
+}
+
 //UC6--getting the data from local storage
 const getEmployeePayrollFromLocalStorage=()=>
 {
-    return localStorage.getItem("EmployeePayrollList2") ? JSON.parse(localStorage.getItem("EmployeePayrollList2")) : [];
+    employeePayrollList=localStorage.getItem("EmployeePayrollList2") ? JSON.parse(localStorage.getItem("EmployeePayrollList2")) : [];
+    processEmployeePayrollDataResponse();
 }
 
 //UC5-->employee details from json object
@@ -101,5 +131,5 @@ const update=(node)=>
     if(!employeePayrollData) return;
     localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
     //editEmp is the new local storage created
-    window.location.replace(site_Properties.add_emp_payroll_page); //this is for redirecting to the regoster page as add_emp variable holds that address
+    window.location.replace(site_Properties.add_emp_payroll_page); //this is for redirecting to the register page as add_emp variable holds that address
 }

@@ -9,7 +9,7 @@ const stringifyDate=(date)=>
 //validate name and start date
 const checkName=(name)=>
 {
-    let nameRegex=RegExp("^[A-Z]{1}[a-z]{2,}$");
+    let nameRegex=RegExp("^[A-Z]{1}[a-z]{2,}[ ][A-Z]{1}[a-z]{2,}$");
     if(!nameRegex.test(name))  throw "Name is incorrect!";
 }
 
