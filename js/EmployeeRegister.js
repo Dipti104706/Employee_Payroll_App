@@ -83,19 +83,51 @@ const setSelectedValues = (property, value) => {
     });
 }
 
-/*Uc3 - create employee payroll object on doing save operation also for saving after update */
-const save = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    try {
-        setEmployeePayrollObject();
+//Uc5 and 7 for add and update data in json server
+const save=(event)=>
+{
+  event.preventDefault();
+  event.stopPropagation();
+  try
+  {
+    setEmployeePayrollObject();
+    if(site_Properties.use_local_storage.match("true"))
+    {
         createAndUpdateStorage();
         resetForm();
         window.location.replace(site_Properties.home_page);
     }
-    catch (e) {
-        return;
+    else
+    {
+        createOrUpdateEmployeePayroll();
+        window.location.replace(site_Properties.home_page);
     }
+  }
+  catch(e)
+  {
+    return;
+  }
+}
+//for json server using AJAX
+const createOrUpdateEmployeePayroll=()=>
+{
+  let postURL=site_Properties.server_url;
+  let methodCall="POST";
+  if(isUpdate)
+  {
+    methodCall="PUT";
+    postURL=postURL+empPayrollObj.id.toString();
+  }
+  makeServiceCall(methodCall,postURL,true,empPayrollObj)
+ .then(responseText=>
+  {
+      resetForm();
+    
+  })
+  .catch(error=>
+    {
+      throw error;
+    });
 }
 
 const setEmployeePayrollObject = () => {
