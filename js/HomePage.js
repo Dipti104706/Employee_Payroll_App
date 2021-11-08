@@ -32,8 +32,8 @@ createInnerHtml = () => {
         <td>${employeeData._salary}</td>
         <td>${employeeData._startDate}</td>
         <td>
-        <img id="${employeeData._id}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon"> 
-        <img id="${employeeData._id}" onclick="update(this)" src="../assets/Logo/create-black-18dp.svg" alt="edit icon">
+        <img id="${employeeData.id}" onclick="remove(this)" src="../assets/Logo/delete-black-18dp.svg" alt="delete icon"> 
+        <img id="${employeeData.id}" onclick="update(this)" src="../assets/Logo/create-black-18dp.svg" alt="edit icon">
         </td>
         </tr>
         `;
@@ -51,7 +51,7 @@ const createEmployeePayrollJSON = () => {
             _salary: 600000,
             _startDate: '21-Aug-2021',
             _note: '',
-            _id: new Date().getTime(),
+            id: new Date().getTime(),
             _profilePic: '../assets/Profiles/Ellipse -1.png'
         },
         {
@@ -61,7 +61,7 @@ const createEmployeePayrollJSON = () => {
             _salary: 65000,
             _startDate: '19-Aug-2021',
             _note: '',
-            _id: new Date().getTime(),
+            id: new Date().getTime(),
             _profilePic: '../assets/Profiles/Ellipse -1.png'
         }
     ];
@@ -83,10 +83,10 @@ const getDeptHtml=(deptList) =>
 //delete operation in home page based on name
 const remove=(node)=>
 {
-    let employeePayrollData=employeePayrollList.find(empData=>empData._id==node.id)
+    let employeePayrollData=employeePayrollList.find(empData=>empData.id==node.id)
     if(!employeePayrollData) return;
-    const index=employeePayrollList.map(empData=>empData._id)
-                               .indexOf(employeePayrollData._id);
+    const index=employeePayrollList.map(empData=>empData.id)
+                               .indexOf(employeePayrollData.id);
     employeePayrollList.splice(index,1);
     localStorage.setItem("EmployeePayrollList2",JSON.stringify(employeePayrollList));
     document.querySelector(".emp-count").textContent=employeePayrollList.length;
@@ -97,7 +97,7 @@ const remove=(node)=>
 //update operation and store it in local
 const update=(node)=>
 {
-    let employeePayrollData=employeePayrollList.find(empData=>empData._id==node.id)
+    let employeePayrollData=employeePayrollList.find(empData=>empData.id==node.id)
     if(!employeePayrollData) return;
     localStorage.setItem('editEmp',JSON.stringify(employeePayrollData))
     //editEmp is the new local storage created
